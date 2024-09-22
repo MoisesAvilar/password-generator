@@ -1,4 +1,7 @@
-from functions import gui, main_function, new_window
+import PySimpleGUI as gui
+from functions.generate_password import generate_password
+from functions.new_window import save_password_window
+
 
 # Interface gráfica e lógica
 
@@ -7,7 +10,7 @@ interface = [
               font=16, key='start', justification='c')],
 
     [gui.Text('Tipo de senha', font=16, size=15, key='pass_text'),
-        gui.Combo(['De A à Z', 'Numérico', 'Alfanumérico'], readonly=True, 
+        gui.Combo(['De A à Z', 'Numérico', 'Alfanumérico'], readonly=True,
                   font=16, size=13, key='tipo', default_value='-- Selecionar')],
 
     [gui.Text('Tamanho da senha', font=16, size=15),
@@ -42,25 +45,27 @@ while True:
         valores['size'] = int(valores['size'])
 
         if valores['tipo'] == 'De A à Z':
-            generator = main_function(1, valores['size'])
+            generator = generate_password(1, valores['size'])
             janela['vazio'].update('Senha gerada com sucesso!')
             janela['campo'].update(f'{generator}')
             success = True
 
         elif valores['tipo'] == 'Numérico':
-            generator = main_function(2, valores['size'])
+            generator = generate_password(2, valores['size'])
             janela['vazio'].update('Senha gerada com sucesso!')
             janela['campo'].update(f'{generator}')
             success = True
 
         elif valores['tipo'] == 'Alfanumérico':
-            generator = main_function(3, valores['size'])
+            generator = generate_password(3, valores['size'])
             janela['vazio'].update('Senha gerada com sucesso!')
             janela['campo'].update(f'{generator}')
             success = True
 
         elif valores['tipo'] in '-- Selecionar':
-            gui.popup('Você deve escolher o tipo de caracter\n\tantes de gerar a senha')
+            gui.popup(
+                'Você deve escolher o tipo de caracter\n\tantes de gerar a senha'
+            )
 
     # Após a senha ser gerada, o usuário pode salvar em um arquivo de texto
 
@@ -70,6 +75,6 @@ while True:
         else:
             success = True
             password = generator
-            new_window(password)
+            save_password_window(password)
 
 janela.close()
