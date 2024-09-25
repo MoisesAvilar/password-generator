@@ -9,6 +9,10 @@ Este é um simples gerador de senhas feito usando a biblioteca PySimpleGUI que p
 
 **Salvando Senhas:** Após gerar uma senha, os usuários têm a opção de salvá-la associada a um nome de site ou usuário em um arquivo de texto.
 
+![alt text](imgs/image-1.png)
+![alt text](imgs/image-2.png)
+
+
 ## Como Usar
 1. Execute o programa Python.
 
